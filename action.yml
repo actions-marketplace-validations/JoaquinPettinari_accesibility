@@ -4,6 +4,12 @@ author: Joaquin Pettinari
 branding: 
   icon: "paperclip"
   color: "white"
+
+inputs:
+    port:
+        description: 'The port number for the development server'
+        required: false
+        default: '3000'
 on:
   pull_request:
     branches:
@@ -13,7 +19,7 @@ jobs:
   pa11y:
     runs-on: ubuntu-22.04
     env:
-      PORT: 3010
+      PORT: ${{ inputs.port }}
     steps:
       - name: Checkout repository code
         uses: actions/checkout@v4
