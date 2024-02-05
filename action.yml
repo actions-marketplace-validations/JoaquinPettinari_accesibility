@@ -1,5 +1,9 @@
-name: Pa11y
-
+name: Accesibility for Argentinas Law
+description: This is a free action to test you application depending on Argentinas law
+author: Joaquin Pettinari
+branding: 
+  icon: "paperclip"
+  color: "white"
 on:
   pull_request:
     branches:
