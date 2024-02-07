@@ -12,7 +12,6 @@ inputs:
     default: "3000"
 
 runs:
-  using: "node20"
   steps:
     - name: Checkout repository code
       uses: actions/checkout@v4
