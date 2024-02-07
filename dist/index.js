@@ -26,7 +26,7 @@ try {
   const payload = JSON.stringify(github.context.payload, undefined, 2);
   console.log(`The event payload: ${payload}`);
   console.log("Running Pa11y...");
-  await runPa11y(port);
+  runPa11y(port);
   console.log("Pa11y completed successfully.");
 } catch (error) {
   core.setFailed(error.message);
