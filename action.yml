@@ -11,22 +11,29 @@ inputs:
     required: false
     default: "3000"
 
-jobs:
-  pa11y:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout repository code
-        uses: actions/checkout@v4
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-      - name: Install dependencies
-        run: npm install
-      - run: npm run build --if-present
-      - run: npm run dev & npx wait-on http://localhost:${{ inputs.PORT }}
-      - name: Run pa11y
-        run: |
-          npm install -g pa11y
-          echo "Running Pa11y: "
-          pa11y http://localhost:${{ inputs.PORT }}
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout repository code
+      uses: actions/checkout@v4
+    - name: Use Node.js 16.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+    - name: Install dependencies
+      run: npm install
+      shell: bash
+    - run: npm run build --if-present
+      shell: bash
+    - run: npm run dev & npx wait-on http://localhost:$PORT
+      shell: bash
+      env:
+        PORT: ${{ inputs.port }}
+    - name: Run pa11y
+      run: |
+        npm install -g pa11y
+        echo "Running Pa11y: "
+        pa11y http://localhost:$PORT
+      shell: bash
+      env:
+        PORT: ${{ inputs.port }}
