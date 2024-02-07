@@ -12,6 +12,7 @@ inputs:
     default: "3000"
 
 runs:
+  shell: bash
   steps:
     - name: Checkout repository code
       uses: actions/checkout@v4
