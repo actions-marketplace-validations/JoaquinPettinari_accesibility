@@ -1,16 +1,18 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
 
-async function runPa11y(port) {
+function runPa11y(port) {
   const url = `http://localhost:${port}`;
   try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(
-        `Failed to fetch ${url}. Status: ${response.status} ${response.statusText}`
+    const response = fetch(url)
+      .then((res) => res.json())
+      .then((res) => console.log(res))
+      .catch(
+        (err) =>
+          new Error(
+            `Failed to fetch ${url}. Status: ${response.status} ${response.statusText}`
+          )
       );
-    }
-    console.log(`Successfully fetched ${url}.`);
   } catch (error) {
     console.error("Error fetching URL:", error);
     throw error;
