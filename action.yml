@@ -13,7 +13,7 @@ inputs:
 
 jobs:
   pa11y:
-    runs_on: ubuntu-22.04
+    runs-on: ubuntu-22.04
     steps:
       shell: bash
       - name: Checkout repository code
