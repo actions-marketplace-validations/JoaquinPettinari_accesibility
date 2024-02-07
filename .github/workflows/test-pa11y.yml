@@ -1,0 +1,14 @@
+name: Pa11y
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  pa11y:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Accesibility for Argentinas Law
+        uses: ./action.yml
+        with:
+          port: 5173
