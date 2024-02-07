@@ -1,42 +1,16 @@
 name: Accesibility for Argentinas Law
-description: This is a free action to test you application depending on Argentinas law
+description: This is a free action to test your application for compliance with Argentina's law
 author: Joaquin Pettinari
-branding: 
+branding:
   icon: "paperclip"
   color: "white"
 
 inputs:
-    port:
-        description: 'The port number for the development server'
-        required: false
-        default: '3000'
-on:
-  pull_request:
-    branches:
-      - main
+  port:
+    description: "The port number for the development server"
+    required: false
+    default: "3000"
 
-jobs:
-  pa11y:
-    runs-on: ubuntu-22.04
-    env:
-      PORT: ${{ inputs.port }}
-    steps:
-      - name: Checkout repository code
-        uses: actions/checkout@v4
-
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-
-      - name: Install dependencies
-        run: npm install
-
-      - run: npm run build --if-present
-      - run: npm run dev & npx wait-on http://localhost:${{ env.PORT }}
-
-      - name: Run pa11y
-        run: |
-          npm install -g pa11y
-          echo "Running Pa11y: "
-          pa11y http://localhost:${{ env.PORT }} --config pa11y.json
+runs:
+  using: "node20"
+  main: "dist/index.js"
