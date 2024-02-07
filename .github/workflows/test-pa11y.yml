@@ -8,6 +8,10 @@ jobs:
   pa11y:
     runs-on: ubuntu-22.04
     steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm install
       - name: Accesibility for Argentinas Law
         uses: ./
         with:
