@@ -15,7 +15,6 @@ jobs:
   pa11y:
     runs-on: ubuntu-22.04
     steps:
-      shell: bash
       - name: Checkout repository code
         uses: actions/checkout@v4
       - name: Use Node.js 16.x
